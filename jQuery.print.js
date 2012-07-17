@@ -59,8 +59,7 @@
 		}
 		if (options.stylesheet) {
 			// Add a custom stylesheet if given
-			styles = $.merge(styles, $('<link rel="stylesheet" href="'
-					+ stylesheet + '">'));
+			styles = $.merge(styles, $('<link rel="stylesheet" href="' + stylesheet + '">'));
 		}
 
 		var copy = $this.clone(); // Create a copy of the element to print
@@ -96,7 +95,7 @@
 			w.close();
 		}
 		return this;
-	}
+	};
 
 	$.fn.setupPrintLink = function() {
 		// Add a link to print a given set of elements
@@ -158,8 +157,7 @@
 		}
 		if (options.stylesheet) {
 			// Add a custom stylesheet if given
-			styles = $.merge(styles, $('<link rel="stylesheet" href="'
-					+ stylesheet + '">'));
+			styles = $.merge(styles, $('<link rel="stylesheet" href="' + stylesheet + '">'));
 		}
 
 		// var scripts = $("script"); //Un-Comment if you want scripts to be
@@ -213,5 +211,6 @@
 					});
 				});
 		return this;
-	}
+	};
 })(jQuery);
+

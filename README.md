@@ -20,5 +20,6 @@ Include it in your HTML after importing jQuery, like:
 [CC-BY](http://creativecommons.org/licenses/by/3.0/).
 
 ## Live at
-Comming Soon ...
+[jsFiddle](http://jsfiddle.net/5V24U/2/)
+
 Do let me know if you are using it and would like to be featured here
