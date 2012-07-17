@@ -1,6 +1,6 @@
 /*  jQuery.print, version 0.1
  *  (c) Sathvik Ponangi
- *
+ * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
 
 (function($) {
