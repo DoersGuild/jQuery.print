@@ -6,6 +6,8 @@
 (function($) {
 	// A nice closure for our definitions
 
+	console.log($, $.fn);
+
 	$.fn.print = function() {
 		// Print a given set of elements
 
@@ -93,6 +95,7 @@
 			w.print();
 			w.close();
 		}
+		return this;
 	}
 
 	$.fn.setupPrintLink = function() {
@@ -177,34 +180,38 @@
 					copy.prepend(options.prepend);
 					var content = copy.html();
 					copy.remove();
-					$(this).find(options.printLinkSelector).on("click select",
-							function() {
-								// Set the elements matching printLinkSelector
-								// to print on click/select
-								var w;
-								if (options.iframe) {
-									// Use an iframe for printing
-									$iframe = $(options.iframe);
-									iframeCount = $iframe.length;
-									if (iframeCount === 0) {
-										// Create a new iFrame if none is given
-										$iframe = $('<iframe/>').hide();
-									}
-									w = iframe[0];
-									w.document.write(content);
-									w.print();
-									if (iframeCount === 0) {
-										// Destroy the iframe if created here
-										$iframe.remove();
-									}
-								} else {
-									// Use a new window for printing
-									w = window.open();
-									w.document.write(content);
-									w.print();
-									w.close();
-								}
-							});
+					var selector = $(this).find(options.printLinkSelector);
+					if (selector.length === 0) {
+						selector = $(this);
+					}
+					selector.on("click select", function() {
+						// Set the elements matching printLinkSelector
+						// to print on click/select
+						var w;
+						if (options.iframe) {
+							// Use an iframe for printing
+							$iframe = $(options.iframe);
+							iframeCount = $iframe.length;
+							if (iframeCount === 0) {
+								// Create a new iFrame if none is given
+								$iframe = $('<iframe/>').hide();
+							}
+							w = iframe[0];
+							w.document.write(content);
+							w.print();
+							if (iframeCount === 0) {
+								// Destroy the iframe if created here
+								$iframe.remove();
+							}
+						} else {
+							// Use a new window for printing
+							w = window.open();
+							w.document.write(content);
+							w.print();
+							w.close();
+						}
+					});
 				});
+		return this;
 	}
 })(jQuery);
