@@ -6,9 +6,7 @@
 (function($) {
 	// A nice closure for our definitions
 
-	console.log($, $.fn);
-
-	$.fn.print = function() {
+	$.print = $.fn.print = function() {
 		// Print a given set of elements
 
 		var options, $this;
@@ -59,7 +57,8 @@
 		}
 		if (options.stylesheet) {
 			// Add a custom stylesheet if given
-			styles = $.merge(styles, $('<link rel="stylesheet" href="' + stylesheet + '">'));
+			styles = $.merge(styles, $('<link rel="stylesheet" href="'
+					+ options.stylesheet + '">'));
 		}
 
 		var copy = $this.clone(); // Create a copy of the element to print
@@ -71,21 +70,31 @@
 		var content = copy.html();
 		copy.remove();
 
-		var w;
+		var w, wdoc;
 		if (options.iframe) {
 			// Use an iframe for printing
-			$iframe = $(options.iframe);
-			iframeCount = $iframe.length;
-			if (iframeCount === 0) {
-				// Create a new iFrame if none is given
-				$iframe = $('<iframe/>').hide();
-			}
-			w = iframe[0];
-			w.document.write(content);
-			w.print();
-			if (iframeCount === 0) {
-				// Destroy the iframe if created here
-				$iframe.remove();
+			try {
+				$iframe = $(options.iframe + "");
+				var iframeCount = $iframe.length;
+				if (iframeCount === 0) {
+					// Create a new iFrame if none is given
+					$iframe = $('<iframe/>').appendTo('body').hide();
+				}
+				w = $iframe[0];
+				w = w.contentWindow || w.contentDocument;
+				wdoc = w.document || w;
+				wdoc.open();
+				wdoc.write(content);
+				w.print();
+				if (iframeCount === 0) {
+					// Destroy the iframe if created here
+					$iframe.remove();
+				}
+			} catch (e) {
+				w = window.open();
+				w.document.write(content);
+				w.print();
+				w.close();
 			}
 		} else {
 			// Use a new window for printing
@@ -97,7 +106,7 @@
 		return this;
 	};
 
-	$.fn.setupPrintLink = function() {
+	$.setupPrintLink = $.fn.setupPrintLink = function() {
 		// Add a link to print a given set of elements
 
 		/*
@@ -139,6 +148,7 @@
 			printSelector : ".to-print",
 			noPrintSelector : ".no-print",
 			printLinkSelector : ".print-link",
+			removePrintLink : false,
 			iframe : null,
 			append : null,
 			prepend : null
@@ -157,60 +167,74 @@
 		}
 		if (options.stylesheet) {
 			// Add a custom stylesheet if given
-			styles = $.merge(styles, $('<link rel="stylesheet" href="' + stylesheet + '">'));
+			styles = $.merge(styles, $('<link rel="stylesheet" href="'
+					+ options.stylesheet + '">'));
 		}
 
 		// var scripts = $("script"); //Un-Comment if you want scripts to be
 		// included
 		// scripts = (scripts.length > 0 && scripts.html());
 
-		$this.find(options.printSelector).each(
-				function() {
-					// Add a print link to each of the printSelector elements
-					var copy = $this.clone();
-					copy = $("<span/>").append(copy);
-					// Don't display these elements in printed document
-					copy.find(
-							[ options.noPrintSelector,
-									options.printLinkSelector ]).remove();
-					copy.append(styles.clone());
-					copy.append(options.append);
-					copy.prepend(options.prepend);
-					var content = copy.html();
-					copy.remove();
-					var selector = $(this).find(options.printLinkSelector);
-					if (selector.length === 0) {
-						selector = $(this);
-					}
-					selector.on("click select", function() {
-						// Set the elements matching printLinkSelector
-						// to print on click/select
-						var w;
-						if (options.iframe) {
-							// Use an iframe for printing
-							$iframe = $(options.iframe);
-							iframeCount = $iframe.length;
-							if (iframeCount === 0) {
-								// Create a new iFrame if none is given
-								$iframe = $('<iframe/>').hide();
-							}
-							w = iframe[0];
-							w.document.write(content);
-							w.print();
-							if (iframeCount === 0) {
-								// Destroy the iframe if created here
-								$iframe.remove();
-							}
-						} else {
-							// Use a new window for printing
-							w = window.open();
-							w.document.write(content);
-							w.print();
-							w.close();
+		var selector = $this.find(options.printSelector);
+		if (selector.length === 0) {
+			selector = $this;
+		}
+		selector.each(function() {
+			// Add a print link to each of the printSelector elements
+			var copy = $this.clone();
+			copy = $("<span/>").append(copy);
+			// Don't display these elements in printed document
+			copy.find(options.noPrintSelector).remove();
+			if (options.removePrintLink) {
+				copy.find(options.printLinkSelector).remove();
+			}
+			copy.append(styles.clone());
+			copy.append(options.append);
+			copy.prepend(options.prepend);
+			var content = copy.html();
+			copy.remove();
+			var linkSelector = $(this).find(options.printLinkSelector);
+			if (linkSelector.length === 0) {
+				linkSelector = $(this);
+			}
+			linkSelector.on("click select", function() {
+				// Set the elements matching printLinkSelector
+				// to print on click/select
+				var w;
+				if (options.iframe) {
+					// Use an iframe for printing
+					try {
+						$iframe = $(options.iframe + "");
+						var iframeCount = $iframe.length;
+						if (iframeCount === 0) {
+							// Create a new iFrame if none is given
+							$iframe = $('<iframe/>').appendTo('body').hide();
 						}
-					});
-				});
+						w = $iframe[0];
+						w = w.contentWindow || w.contentDocument;
+						wdoc = w.document || w;
+						wdoc.open();
+						wdoc.write(content);
+						w.print();
+						if (iframeCount === 0) {
+							// Destroy the iframe if created here
+							$iframe.remove();
+						}
+					} catch (e) {
+						w = window.open();
+						w.document.write(content);
+						w.print();
+						w.close();
+					}
+				} else {
+					// Use a new window for printing
+					w = window.open();
+					w.document.write(content);
+					w.print();
+					w.close();
+				}
+			});
+		});
 		return this;
 	};
 })(jQuery);
-
