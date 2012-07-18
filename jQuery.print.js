@@ -46,7 +46,7 @@
 			stylesheet : null,
 			rejectWindow : true,
 			noPrintSelector : ".no-print",
-			iframe : null,
+			iframe : true,
 			append : null,
 			prepend : null
 		}; // Default options
