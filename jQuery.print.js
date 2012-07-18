@@ -9,9 +9,16 @@
 	$.print = $.fn.print = function() {
 		// Print a given set of elements
 
+		var isNode = function(o) {
+			/* http://stackoverflow.com/a/384380/937891 */
+			return (typeof Node === "object" ? o instanceof Node : o
+					&& typeof o === "object" && typeof o.nodeType === "number"
+					&& typeof o.nodeName === "string");
+		}
+
 		var options, $this;
 
-		if (this instanceof HTMLElement) {
+		if (isNode(this)) {
 			// If `this` is a HTML element, i.e. for
 			// $(selector).print()
 			$this = $(this);
@@ -19,7 +26,7 @@
 			if (arguments.length > 0) {
 				// $.print(selector,options)
 				$this = $(arguments[0]);
-				if ($this[0] instanceof HTMLElement) {
+				if (isNode($this[0])) {
 					if (arguments.length > 1) {
 						options = arguments[1];
 					}
@@ -91,6 +98,7 @@
 					$iframe.remove();
 				}
 			} catch (e) {
+				// Use the pop-up method if iframe fails for some reason
 				w = window.open();
 				w.document.write(content);
 				w.print();
