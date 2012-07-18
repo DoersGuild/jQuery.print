@@ -13,7 +13,48 @@ Use it like:
 or
 	$.print("#myElementId" /*, options*/);
 	
+You can submit the options object like:
+	$("#myElementId").print({
+		addGlobalStyles : true,
+		stylesheet : null,
+		rejectWindow : true,
+		noPrintSelector : ".no-print",
+		iframe : true,
+		append : null,
+		prepend : null
+	});
 	
+Currently this plugin supports the following options:
+
+####addGlobalStyles
+Default: `true`
+Acceptable-Values: Boolean
+Function: Whether or not the styles from the parent document should be included
+
+####stylesheet
+Default: `null`
+Acceptable-Values: URL-string
+Function: URL of an external stylesheet to be included
+
+####rejectWindow
+Default: `true`
+Acceptable-Values: Boolean
+Function: Whether the `document` object should be used intead of `window`
+
+####noPrintSelector
+Default: `".no-print"`
+Acceptable-Values: Any valid `jQuery-selector`
+Function: A selector for the items that are to be excluded from printing
+
+####iframe
+Default: `true`, creates a hidden iframe if no-vaild iframe selector is passed
+Acceptable-Values: Any valid `jQuery-selector` or Boolean
+Function: Whether to print from an iframe instead of a pop-up window; can take the `jQuery-selector` of an existing iframe as value
+
+####append/prepend
+Default: `null`
+Acceptable-Values: Any valid `jQuery-selector` or HTML-text
+Function: Adds custom HTML before (prepend) or after (append) the selected content
 
 ## Tested on
 

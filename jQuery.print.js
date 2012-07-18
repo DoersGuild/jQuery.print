@@ -72,8 +72,8 @@
 		copy = $("<span/>").append(copy);
 		copy.find(options.noPrintSelector).remove();// Remove unwanted elements
 		copy.append(styles.clone());
-		copy.append(options.append);
-		copy.prepend(options.prepend);
+		copy.append($(options.append).clone());
+		copy.prepend($(options.prepend).clone());
 		var content = copy.html();
 		copy.remove();
 
