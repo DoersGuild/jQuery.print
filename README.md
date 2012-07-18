@@ -11,7 +11,7 @@ Include it in your HTML after importing jQuery, like:
 ## Tested on
 
 ### jQuery
-* [jQuery](http://jquery.com/) v. 1.7.1
+* [jQuery](http://jquery.com/) v. 1.7.2
 
 ### Browser Support (tested versions)
 * Google Chrome - v 20
