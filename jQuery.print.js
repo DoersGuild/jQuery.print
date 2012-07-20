@@ -1,4 +1,4 @@
-/*  jQuery.print, version 1.0
+/*  jQuery.print, version 1.01
  *  (c) Sathvik Ponangi
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
@@ -42,7 +42,8 @@
 		}
 
 		var defaults = {
-			addGlobalStyles : true,
+			globalStyles : true,
+			mediaPrint:false,
 			stylesheet : null,
 			rejectWindow : true,
 			noPrintSelector : ".no-print",
@@ -58,9 +59,12 @@
 		}
 
 		var styles = $("");
-		if (options.addGlobalStyles) {
+		if (options.globalStyles) {
 			// Apply the stlyes from the current sheet to the printed page
 			styles = $("style, link");
+		} else if (options.mediaPrint) {
+			// Apply the media-print stylesheet
+			styles = $("link[media=print]");
 		}
 		if (options.stylesheet) {
 			// Add a custom stylesheet if given

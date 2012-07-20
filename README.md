@@ -29,11 +29,17 @@ You can submit the options object like:
 	
 Currently this plugin supports the following options:
 
-####addGlobalStyles
+####globalStyles
 
  - Default: `true`  
  - Acceptable-Values: Boolean  
- - Function: Whether or not    the styles from the parent document should be included
+ - Function: Whether or not the styles from the parent document should be included
+
+####mediaPrint
+
+ - Default: `false`  
+ - Acceptable-Values: Boolean  
+ - Function: Whether or not link tags with media='print' should be included; Over-riden by the `globalStyles` option
 
 ####stylesheet
 
