@@ -83,6 +83,6 @@ Currently this plugin supports the following options:
 [CC-BY](http://creativecommons.org/licenses/by/3.0/).
 
 ## Live at
-[jsFiddle](http://jsfiddle.net/5V24U/24/)
+[jsFiddle](http://jsfiddle.net/5V24U/27/)
 
 Do let me know if you are using it and would like to be featured here
