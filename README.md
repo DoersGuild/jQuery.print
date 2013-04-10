@@ -85,4 +85,5 @@ Currently this plugin supports the following options:
 ## Live at
 [jsFiddle](http://jsfiddle.net/5V24U/27/)
 
-Do let me know if you are using it and would like to be featured here
+---------------------------------------
+Like our [work](http://doersguild.com)? [Get in touch!](mailto:mail@doersguild.com)
