@@ -5,7 +5,7 @@ jQuery.print is a plugin for printing specific parts of a page
 ## Usage
 
 Include it in your HTML after importing jQuery, like:
-	<script type="text/JavaScript" src="./js/libs/jquery.print.js" />
+	<script type="text/JavaScript" src="path/to/jquery.print.js" />
 	
 Use it like:
 
@@ -71,18 +71,20 @@ Currently this plugin supports the following options:
  - Acceptable-Values: Any valid `jQuery-selector` or HTML-text
  - Function: Adds custom HTML before (prepend) or after (append) the selected content
 
-## Tested on
+## Tested with
 
 ### jQuery
 * [jQuery](http://jquery.com/) v. 1.7.2
+* [jQuery](http://jquery.com/) v. 1.9.1
 
-### Browser Support (tested versions)
-* Google Chrome - v 20
+### Browsers
+* Google Chrome - v 20, 26
+* Internet Explorer - v 10
 
 ## License
 [CC-BY](http://creativecommons.org/licenses/by/3.0/).
 
-## Live at
+## Demo
 [jsFiddle](http://jsfiddle.net/5V24U/27/)
 
 ---------------------------------------
