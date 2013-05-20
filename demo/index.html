@@ -40,7 +40,7 @@
                 <p>
                     Some random text.
                 </p>
-                <button class="print-link" onclick="$('#ele1').print()">
+                <button class="print-link no-print" onclick="jQuery('#ele1').print()">
                     Print this
                 </button>
             </div>
@@ -58,7 +58,7 @@
                 <p class="no-print">
                     Some more random text.
                 </p>
-                <button class="print-link" onclick="$.print('#ele3')">
+                <button class="print-link" onclick="jQuery.print('#ele3')">
                     Print this
                 </button>
             </div>
@@ -67,12 +67,12 @@
                 <p>
                     Some really random text.
                 </p>
-                <button class="print-link">
+                <button class="print-link avoid-this">
                     Print this
                 </button>
             </div>
             <br/>
-            <button class="print-link" onclick="$.print()">
+            <button class="print-link" onclick="jQuery.print()">
                 Print page
             </button>
         </div>

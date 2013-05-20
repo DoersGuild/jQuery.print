@@ -47,12 +47,6 @@ Currently this plugin supports the following options:
  - Acceptable-Values: URL-string
  - Function: URL of an external stylesheet to be included
 
-####rejectWindow
-
- - Default: `true`
- - Acceptable-Values: Boolean
- - Function: Whether the `document` object should be used intead of `window`
-
 ####noPrintSelector
 
  - Default: `".no-print"`
