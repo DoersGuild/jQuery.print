@@ -38,47 +38,51 @@
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <div id="content_holder">
-            <div id="ele1" class="a">
-                <h3>Element 1</h3>
-                <p>
-                    Some random text.
-                </p>
-                <button class="print-link no-print" onclick="jQuery('#ele1').print()">
-                    Print this
-                </button>
+        <div id="container">
+            <div class="inner">
+                <div id="content_holder">
+                    <div id="ele1" class="a">
+                        <h3>Element 1</h3>
+                        <p>
+                            Some random text.
+                        </p>
+                        <button class="print-link no-print" onclick="jQuery('#ele1').print()">
+                            Print this
+                        </button>
+                    </div>
+                    <div id="ele2" class="b">
+                        <h3>Element 2</h3>
+                        <p>
+                            Some other random text.
+                        </p>
+                        <button class="print-link no-print">
+                            Print this
+                        </button>
+                    </div>
+                    <div id="ele3" class="a">
+                        <h3>Element 3</h3>
+                        <p class="no-print">
+                            Some more random text.
+                        </p>
+                        <button class="print-link" onclick="jQuery.print('#ele3')">
+                            Print this
+                        </button>
+                    </div>
+                    <div id="ele4" class="b">
+                        <h3 class='avoid-this'>Element 4</h3>
+                        <p>
+                            Some really random text.
+                        </p>
+                        <button class="print-link avoid-this">
+                            Print this
+                        </button>
+                    </div>
+                    <br/>
+                    <button class="print-link" onclick="jQuery.print()">
+                        Print page
+                    </button>
+                </div>
             </div>
-            <div id="ele2" class="b">
-                <h3>Element 2</h3>
-                <p>
-                    Some other random text.
-                </p>
-                <button class="print-link no-print">
-                    Print this
-                </button>
-            </div>
-            <div id="ele3" class="a">
-                <h3>Element 3</h3>
-                <p class="no-print">
-                    Some more random text.
-                </p>
-                <button class="print-link" onclick="jQuery.print('#ele3')">
-                    Print this
-                </button>
-            </div>
-            <div id="ele4" class="b">
-                <h3 class='avoid-this'>Element 4</h3>
-                <p>
-                    Some really random text.
-                </p>
-                <button class="print-link avoid-this">
-                    Print this
-                </button>
-            </div>
-            <br/>
-            <button class="print-link" onclick="jQuery.print()">
-                Print page
-            </button>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
