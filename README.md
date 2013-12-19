@@ -79,7 +79,7 @@ Currently this plugin supports the following options:
 [CC-BY](http://creativecommons.org/licenses/by/3.0/).
 
 ## Demo
-[jsFiddle](http://jsfiddle.net/5V24U/27/)
+[jQuery.print/demo](http://doersguild.github.io/jQuery.print/demo/)
 
 ---------------------------------------
 Like our [work](http://doersguild.com)? [Get in touch!](mailto:mail@doersguild.com)
