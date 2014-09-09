@@ -1,5 +1,5 @@
 /* @license 
- * jQuery.print, version 1.0.3
+ * jQuery.print, version 1.2.0
  *  (c) Sathvik Ponangi, Doers' Guild
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
