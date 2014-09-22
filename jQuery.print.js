@@ -129,7 +129,11 @@
                     // Fix for IE : Allow it to render the iframe
                     w.focus();
                     try {
-                        w.document.execCommand('print', false, null);
+                        // Fix for IE11 - printng the whole page instead of the iframe content
+                        if(!w.document.execCommand('print', false, null)) {
+                            // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
+                            w.print();
+                        }
                     } catch(e) {
                         w.print();
                     }
