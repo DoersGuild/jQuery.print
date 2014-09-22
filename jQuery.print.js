@@ -128,7 +128,11 @@
                 setTimeout(function() {
                     // Fix for IE : Allow it to render the iframe
                     w.focus();
-                    w.print();
+                    try {
+                        w.document.execCommand('print', false, null);
+                    } catch(e) {
+                        w.print();
+                    }
                     setTimeout(function() {
                         // Fix for IE
                         if (iframeCount === 0) {
