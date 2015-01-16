@@ -18,13 +18,15 @@ or
 You can submit the options object like:
 
 	$("#myElementId").print({
-		addGlobalStyles : true,
-		stylesheet : null,
-		rejectWindow : true,
-		noPrintSelector : ".no-print",
-		iframe : true,
-		append : null,
-		prepend : null
+        globalStyles: true,
+        mediaPrint: false,
+        stylesheet: null,
+        noPrintSelector: ".no-print",
+        iframe: true,
+        append: null,
+        prepend: null,
+        manuallyCopyFormValues: true,
+        deferred: $.Deferred()
 	});
 	
 Currently this plugin supports the following options:
@@ -64,6 +66,18 @@ Currently this plugin supports the following options:
  - Default: `null`
  - Acceptable-Values: Any valid `jQuery-selector` or HTML-text
  - Function: Adds custom HTML before (prepend) or after (append) the selected content
+
+####manuallyCopyFormValues
+
+ - Default: `true`
+ - Acceptable-Values: Boolean
+ - Function: Should it copy user-updated form input values onto the printed markup (this is done by manually iterating over each form element)
+
+####deferred
+
+ - Default: `$.Deferred()`
+ - Acceptable-Values: Any valid `jQuery.Deferred` object
+ - Function: A jQuery.Deferred object that is resolved once the print function is called
 
 ## Tested with
 
