@@ -1,5 +1,5 @@
 /* @license 
- * jQuery.print, version 1.3.0
+ * jQuery.print, version 1.3.1
  *  (c) Sathvik Ponangi, Doers' Guild
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
@@ -190,9 +190,9 @@
                             }
                         }, 100);
                     })
-                    .fail(function () {
+                    .fail(function (err) {
                         // Use the pop-up method if iframe fails for some reason
-                        console.error("Failed to print from iframe");
+                        console.error("Failed to print from iframe", err);
                         printContentInNewWindow(content);
                     })
                     .always(function () {
