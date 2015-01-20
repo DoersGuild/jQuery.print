@@ -36,7 +36,7 @@
                     frameWindow.print();
                 }
                 frameWindow.close();
-                deferred.resolve();
+                def.resolve();
             }, 250);
         } catch (err) {
             def.reject(err);
@@ -192,7 +192,7 @@
                     })
                     .fail(function () {
                         // Use the pop-up method if iframe fails for some reason
-                        console.error("Failed to print from iframe", e.stack, e.message);
+                        console.error("Failed to print from iframe");
                         printContentInNewWindow(content);
                     })
                     .always(function () {
