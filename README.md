@@ -9,7 +9,9 @@ Include it in your HTML after importing jQuery, like:
 	
 Use it like:
 
+```js
 	$("#myElementId").print(/*options*/);
+```
 	
 or
 
