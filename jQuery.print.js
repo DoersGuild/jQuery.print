@@ -1,5 +1,5 @@
 /* @license 
- * jQuery.print, version 1.3.1
+ * jQuery.print, version 1.3.2
  *  (c) Sathvik Ponangi, Doers' Guild
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
@@ -132,20 +132,26 @@
         if (options.manuallyCopyFormValues) {
             // Manually copy form values into the HTML for printing user-modified input fields
             // http://stackoverflow.com/a/26707753
-            copy.find("input, select, textarea")
+            copy.find("input")
                 .each(function () {
                     var $field = $(this);
                     if ($field.is("[type='radio']") || $field.is("[type='checkbox']")) {
                         if ($field.prop("checked")) {
                             $field.attr("checked", "checked");
                         }
-                    } else if ($field.is("select")) {
-                        $field.find(":selected")
-                            .attr("selected", "selected");
                     } else {
                         $field.attr("value", $field.val());
                     }
                 });
+            copy.find("select").each(function () {
+                var $field = $(this);
+                $field.find(":selected").attr("selected", "selected");
+            });
+            copy.find("textarea").each(function () {
+                // Fix for https://github.com/DoersGuild/jQuery.print/issues/18#issuecomment-96451589
+                var $field = $(this);
+                $field.text($field.val());
+            });
         }
         // Get the HTML markup string
         var content = copy.html();
