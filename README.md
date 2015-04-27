@@ -5,7 +5,10 @@ jQuery.print is a plugin for printing specific parts of a page
 ## Usage
 
 Include it in your HTML after importing jQuery, like:
+
+```html
 	<script type="text/JavaScript" src="path/to/jquery.print.js" />
+```
 	
 Use it like:
 
@@ -15,10 +18,13 @@ Use it like:
 	
 or
 
+```js
 	$.print("#myElementId" /*, options*/);
-	
+```
+
 You can submit the options object like:
 
+```js
 	$("#myElementId").print({
         	globalStyles: true,
         	mediaPrint: false,
@@ -30,7 +36,8 @@ You can submit the options object like:
         	manuallyCopyFormValues: true,
         	deferred: $.Deferred()
 	});
-	
+```
+
 Currently this plugin supports the following options:
 
 ####globalStyles
