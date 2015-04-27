@@ -18,15 +18,15 @@ or
 You can submit the options object like:
 
 	$("#myElementId").print({
-        globalStyles: true,
-        mediaPrint: false,
-        stylesheet: null,
-        noPrintSelector: ".no-print",
-        iframe: true,
-        append: null,
-        prepend: null,
-        manuallyCopyFormValues: true,
-        deferred: $.Deferred()
+        	globalStyles: true,
+        	mediaPrint: false,
+        	stylesheet: null,
+        	noPrintSelector: ".no-print",
+        	iframe: true,
+        	append: null,
+        	prepend: null,
+        	manuallyCopyFormValues: true,
+        	deferred: $.Deferred()
 	});
 	
 Currently this plugin supports the following options:
