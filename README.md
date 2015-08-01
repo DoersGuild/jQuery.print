@@ -34,7 +34,8 @@ You can submit the options object like:
         	append: null,
         	prepend: null,
         	manuallyCopyFormValues: true,
-        	deferred: $.Deferred()
+        	deferred: $.Deferred(),
+        	timeout: 250
 	});
 ```
 
@@ -88,6 +89,13 @@ Currently this plugin supports the following options:
  - Acceptable-Values: Any valid `jQuery.Deferred` object
  - Function: A jQuery.Deferred object that is resolved once the print function is called
 
+####timeout
+
+ - Default: `250`
+ - Acceptable-Values: Time in Milliseconds for `setTimeout`
+ - Function: To change the amount of time to wait for the content, etc to load before printing the element from the new window/iframe created
+ 
+ 
 ## Tested with
 
 ### jQuery
