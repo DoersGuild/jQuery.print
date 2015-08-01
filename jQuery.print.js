@@ -1,5 +1,5 @@
 /* @license 
- * jQuery.print, version 1.3.2
+ * jQuery.print, version 1.3.3
  *  (c) Sathvik Ponangi, Doers' Guild
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
@@ -19,7 +19,7 @@
         return jqObj;
     }
 
-    function printFrame(frameWindow) {
+    function printFrame(frameWindow, timeout) {
         // Print the selected window/iframe
         var def = $.Deferred();
         try {
@@ -37,19 +37,19 @@
                 }
                 frameWindow.close();
                 def.resolve();
-            }, 250);
+            }, timeout);
         } catch (err) {
             def.reject(err);
         }
         return def;
     }
 
-    function printContentInNewWindow(content) {
+    function printContentInNewWindow(content, timeout) {
         // Open a new window and print selected content
         var w = window.open();
         w.document.write(content);
         w.document.close();
-        return printFrame(w);
+        return printFrame(w, timeout);
     }
 
     function isNode(o) {
@@ -99,7 +99,8 @@
             append: null,
             prepend: null,
             manuallyCopyFormValues: true,
-            deferred: $.Deferred()
+            deferred: $.Deferred(),
+            timeout: 250
         };
         // Merge with user-options
         options = $.extend({}, defaults, (options || {}));
@@ -185,7 +186,7 @@
                 wdoc.open();
                 wdoc.write(content);
                 wdoc.close();
-                printFrame(w)
+                printFrame(w, options.timeout)
                     .done(function () {
                         // Success
                         setTimeout(function () {
@@ -199,7 +200,7 @@
                     .fail(function (err) {
                         // Use the pop-up method if iframe fails for some reason
                         console.error("Failed to print from iframe", err);
-                        printContentInNewWindow(content);
+                        printContentInNewWindow(content, options.timeout);
                     })
                     .always(function () {
                         try {
@@ -211,7 +212,7 @@
             } catch (e) {
                 // Use the pop-up method if iframe fails for some reason
                 console.error("Failed to print from iframe", e.stack, e.message);
-                printContentInNewWindow(content)
+                printContentInNewWindow(content, options.timeout)
                     .always(function () {
                         try {
                             options.deferred.resolve();
@@ -222,7 +223,7 @@
             }
         } else {
             // Use a new window for printing
-            printContentInNewWindow(content)
+            printContentInNewWindow(content, options.timeout)
                 .always(function () {
                     try {
                         options.deferred.resolve();
