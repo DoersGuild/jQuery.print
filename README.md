@@ -35,7 +35,8 @@ You can submit the options object like:
         	prepend: null,
         	manuallyCopyFormValues: true,
         	deferred: $.Deferred(),
-        	timeout: 250
+        	timeout: 250,
+        	title: null
 	});
 ```
 
@@ -95,6 +96,11 @@ Currently this plugin supports the following options:
  - Acceptable-Values: Time in Milliseconds for `setTimeout`
  - Function: To change the amount of time to wait for the content, etc to load before printing the element from the new window/iframe created
  
+####title
+
+ - Default: `null`, uses the host page title
+ - Acceptable-Values: Any single-line string
+ - Function: To change the printed title
  
 ## Tested with
 
