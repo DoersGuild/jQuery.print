@@ -100,7 +100,8 @@
             prepend: null,
             manuallyCopyFormValues: true,
             deferred: $.Deferred(),
-            timeout: 250
+            timeout: 250,
+            title: null
         };
         // Merge with user-options
         options = $.extend({}, defaults, (options || {}));
@@ -126,6 +127,15 @@
             .remove();
         // Add in the styles
         copy.append($styles.clone());
+        // Update title
+        if (options.title) {
+            var title = $("title", copy);
+            if (title.length === 0) {
+                title = $("<title />");
+                copy.append(title);                
+            }
+            title.text(options.title);            
+        }
         // Appedned content
         copy.append(getjQueryObject(options.append));
         // Prepended content
