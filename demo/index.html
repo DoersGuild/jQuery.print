@@ -13,13 +13,13 @@
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/normalize.min.css">
         <style type='text/css'>
-                                    .a {
-                                        background: black;
-                                        color: white;
-                                    }
-                                    .b {
-                                        color: #aaa;
-                                    }
+        .a {
+            background: black;
+            color: white;
+        }
+        .b {
+            color: #aaa;
+        }
         </style>
         <!--[if lt IE 9]>
         <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
@@ -27,7 +27,7 @@
     </head>
     <body>
         <!--[if lt IE 9]>
-                                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         <h3><a href="https://github.com/DoersGuild/jQuery.print" id="view-on-github" class="btn"><span>View jQuery.print on GitHub</span></a></h3>
         <div id="content_holder">
@@ -73,40 +73,40 @@
             Print page
             </button>
         </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
+        window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')
         </script>
         <script src="../jQuery.print.js"></script>
         <script type='text/javascript'>
-                                    //<![CDATA[
-                                    $(function() {
-                                        $("#ele2").find('.print-link').on('click', function() {
-                                            //Print ele2 with default options
-                                            $.print("#ele2");
-                                        });
-                                        $("#ele4").find('button').on('click', function() {
-                                            //Print ele4 with custom options
-                                            $("#ele4").print({
-                                                //Use Global styles
-                                                globalStyles : false,
-                                                //Add link with attrbute media=print
-                                                mediaPrint : false,
-                                                //Custom stylesheet
-                                                stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
-                                                //Print in a hidden iframe
-                                                iframe : false,
-                                                //Don't print this
-                                                noPrintSelector : ".avoid-this",
-                                                //Add this at top
-                                                prepend : "Hello World!!!<br/>",
-                                                //Add this on bottom
-                                                append : "<br/>Buh Bye!"
-                                            });
-                                        });
-                                        // Fork https://github.com/sathvikp/jQuery.print for the full list of options
-                                    });
-                                    //]]>
+        //<![CDATA[
+        $(function() {
+            $("#ele2").find('.print-link').on('click', function() {
+                //Print ele2 with default options
+                $.print("#ele2");
+            });
+            $("#ele4").find('button').on('click', function() {
+                //Print ele4 with custom options
+                $("#ele4").print({
+                    //Use Global styles
+                    globalStyles : false,
+                    //Add link with attrbute media=print
+                    mediaPrint : false,
+                    //Custom stylesheet
+                    stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+                    //Print in a hidden iframe
+                    iframe : false,
+                    //Don't print this
+                    noPrintSelector : ".avoid-this",
+                    //Add this at top
+                    prepend : "Hello World!!!<br/>",
+                    //Add this on bottom
+                    append : "<br/>Buh Bye!"
+                });
+            });
+            // Fork https://github.com/sathvikp/jQuery.print for the full list of options
+        });
+        //]]>
         </script>
     </body>
 </html>

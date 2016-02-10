@@ -36,7 +36,8 @@ You can submit the options object like:
         	manuallyCopyFormValues: true,
         	deferred: $.Deferred(),
         	timeout: 250,
-        	title: null
+                title: null,
+                doctype: '<!doctype html>'
 	});
 ```
 
@@ -101,16 +102,24 @@ Currently this plugin supports the following options:
  - Default: `null`, uses the host page title
  - Acceptable-Values: Any single-line string
  - Function: To change the printed title
+
+####doctype
+
+ - Default: `'<!doctype html>'`
+ - Acceptable-Values: Any valid doctype string
+ - Function: To prepend a doctype to the printed document frame
  
 ## Tested with
 
 ### jQuery
 * [jQuery](http://jquery.com/) v. 1.7.2
 * [jQuery](http://jquery.com/) v. 1.9.1
+* [jQuery](http://jquery.com/) v. 2.2.0
 
 ### Browsers
-* Google Chrome - v 20, 26
-* Internet Explorer - v 10
+* Google Chrome - v 20, 26, 48
+* Internet Explorer - v 10, 11
+* Firefox - v 35
 
 ## License
 [CC-BY](http://creativecommons.org/licenses/by/3.0/).
