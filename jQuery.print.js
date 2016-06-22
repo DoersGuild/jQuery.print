@@ -74,6 +74,12 @@
                         // Destroy the iframe if created here
                         $iframe.remove();
                     }
+                    //Callback
+                    if (options.callback) {
+                        if ($.isFunction(options.callback)) {
+                            $.call(this, options.callback);
+                        }
+                    }
                 }, 100);
             })
             .fail(function (err) {
@@ -94,6 +100,16 @@
         // Open a new window and print selected content
         var frameWindow = window.open();
         return printFrame(frameWindow, content, options)
+            .done(function () {
+                setTimeout(function () {
+                    //Callback
+                    if (options.callback) {
+                        if ($.isFunction(options.callback)) {
+                            $.call(this, options.callback);
+                        }
+                    }
+                }, 100);
+            })
             .always(function () {
                 try {
                     options.deferred.resolve();
@@ -153,7 +169,8 @@
             deferred: $.Deferred(),
             timeout: 250,
             title: null,
-            doctype: '<!doctype html>'
+            doctype: '<!doctype html>',
+            callback: $.noop //if callback (function) option isset, it will be called when done|cancel printing.
         };
         // Merge with user-options
         options = $.extend({}, defaults, (options || {}));
@@ -239,6 +256,7 @@
             // Use a new window for printing
             printContentInNewWindow(content, options);
         }
+
         return this;
     };
 })(jQuery);
