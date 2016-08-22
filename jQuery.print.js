@@ -30,21 +30,24 @@
             }
             wdoc.write(content);
             wdoc.close();
-            setTimeout(function () {
-                // Fix for IE : Allow it to render the iframe
-                frameWindow.focus();
-                try {
-                    // Fix for IE11 - printng the whole page instead of the iframe content
-                    if (!frameWindow.document.execCommand('print', false, null)) {
-                        // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
+            //Fix to give enough time for css to load
+            $(frameWindow).on("load", function() {
+                setTimeout(function () {
+                    // Fix for IE : Allow it to render the iframe
+                    frameWindow.focus();
+                    try {
+                        // Fix for IE11 - printng the whole page instead of the iframe content
+                        if (!frameWindow.document.execCommand('print', false, null)) {
+                            // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
+                            frameWindow.print();
+                        }
+                    } catch (e) {
                         frameWindow.print();
                     }
-                } catch (e) {
-                    frameWindow.print();
-                }
-                frameWindow.close();
-                def.resolve();
-            }, options.timeout);
+                    frameWindow.close();
+                    def.resolve();
+                }, options.timeout);
+            });
         } catch (err) {
             def.reject(err);
         }
