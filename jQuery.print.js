@@ -1,5 +1,5 @@
 /* @license 
- * jQuery.print, version 1.4.0
+ * jQuery.print, version 1.5.0
  *  (c) Sathvik Ponangi, Doers' Guild
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
@@ -30,24 +30,30 @@
             }
             wdoc.write(content);
             wdoc.close();
-            //Fix to give enough time for css to load
-            $(frameWindow).on("load", function() {
-                setTimeout(function () {
-                    // Fix for IE : Allow it to render the iframe
-                    frameWindow.focus();
-                    try {
-                        // Fix for IE11 - printng the whole page instead of the iframe content
-                        if (!frameWindow.document.execCommand('print', false, null)) {
-                            // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
-                            frameWindow.print();
-                        }
-                    } catch (e) {
+            var printed = false;
+            function callPrint() {
+                if(printed) {
+                    return;
+                }
+                // Fix for IE : Allow it to render the iframe
+                frameWindow.focus();
+                try {
+                    // Fix for IE11 - printng the whole page instead of the iframe content
+                    if (!frameWindow.document.execCommand('print', false, null)) {
+                        // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
                         frameWindow.print();
                     }
-                    frameWindow.close();
-                    def.resolve();
-                }, options.timeout);
-            });
+                } catch (e) {
+                    frameWindow.print();
+                }
+                frameWindow.close();
+                printed = true;
+                def.resolve();
+            }
+            // Print once the frame window loads - seems to work for the new-window option but unreliable for the iframe
+            $(frameWindow).on("load", callPrint);
+            // Fallback to printing directly if the frame doesn't fire the load event for whatever reason
+            setTimeout(callPrint, options.timeout);
         } catch (err) {
             def.reject(err);
         }
@@ -154,7 +160,7 @@
             prepend: null,
             manuallyCopyFormValues: true,
             deferred: $.Deferred(),
-            timeout: 250,
+            timeout: 750,
             title: null,
             doctype: '<!doctype html>'
         };

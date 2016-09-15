@@ -35,7 +35,7 @@ You can submit the options object like:
         	prepend: null,
         	manuallyCopyFormValues: true,
         	deferred: $.Deferred(),
-        	timeout: 250,
+        	timeout: 750,
                 title: null,
                 doctype: '<!doctype html>'
 	});
@@ -93,9 +93,9 @@ Currently this plugin supports the following options:
 
 ####timeout
 
- - Default: `250`
+ - Default: `750`
  - Acceptable-Values: Time in Milliseconds for `setTimeout`
- - Function: To change the amount of time to wait for the content, etc to load before printing the element from the new window/iframe created
+ - Function: To change the amount of max time to wait for the content, etc to load before printing the element from the new window/iframe created, as a fallback if the [`load` event](https://developer.mozilla.org/en-US/docs/Web/Events/load) for the new window/iframe has not fired yet
  
 ####title
 

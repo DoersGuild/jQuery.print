@@ -47,7 +47,7 @@
                 Some other random text.
                 </p>
                 <button class="print-link no-print">
-                Print this ($.print("#ele2")) and skip the button
+                Print this ($.print("#ele2")) and skip the button (.no-print)
                 </button>
             </div>
             <div id="ele3" class="a">
@@ -64,13 +64,34 @@
                 <p>
                 Some really random text.
                 </p>
+                <pre><code>
+                $("#ele4").find('button').on('click', function() {
+                    //Print ele4 with custom options
+                    $("#ele4").print({
+                        //Use Global styles
+                        globalStyles : false,
+                        //Add link with attrbute media=print
+                        mediaPrint : false,
+                        //Custom stylesheet
+                        stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+                        //Print in a hidden iframe
+                        iframe : false,
+                        //Don't print this
+                        noPrintSelector : ".avoid-this",
+                        //Add this at top
+                        prepend : "Hello World!!!<br/>",
+                        //Add this on bottom
+                        append : "<br/>Buh Bye!"
+                    });
+                });
+                </code></pre>
                 <button class="print-link avoid-this">
                 Print this in a new window, without this button and the title
                 </button>
             </div>
             <br/>
             <button class="print-link" onclick="jQuery.print()">
-            Print page
+            Print page - jQuery.print()
             </button>
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
