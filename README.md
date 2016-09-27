@@ -36,8 +36,8 @@ You can submit the options object like:
         	manuallyCopyFormValues: true,
         	deferred: $.Deferred(),
         	timeout: 750,
-                title: null,
-                doctype: '<!doctype html>'
+        	title: null,
+        	doctype: '<!doctype html>'
 	});
 ```
 
