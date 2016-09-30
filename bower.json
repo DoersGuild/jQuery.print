@@ -1,0 +1,26 @@
+{
+    "name": "jQuery.print",
+    "main": "jQuery.print.js",
+    "version": "1.5.0",
+    "homepage": "https://doersguild.github.io/jQuery.print/",
+    "authors": [
+      "Sathvik P <sathvik@doersguild.com>"
+    ],
+    "description": "Easy to use, Element Printing Plugin for jQuery, for printing specific parts of a page",
+    "keywords": [
+      "print",
+      "element printing",
+      "jquery print"
+    ],
+    "dependencies": {
+        "jquery": ">=1.7.2"
+    },
+    "license": "CC-BY",
+    "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components",
+      "test",
+      "tests"
+    ]
+}
