@@ -42,6 +42,9 @@
                     if (!frameWindow.document.execCommand('print', false, null)) {
                         // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
                         frameWindow.print();
+                    }else{
+                        // focus body as it is losing focus in iPad and content not getting printed
+                        $('body').focus();
                     }
                 } catch (e) {
                     frameWindow.print();
@@ -83,7 +86,7 @@
                         // Destroy the iframe if created here
                         $iframe.remove();
                     }
-                }, 100);
+                }, 1000);
             })
             .fail(function (err) {
                 // Use the pop-up method if iframe fails for some reason
