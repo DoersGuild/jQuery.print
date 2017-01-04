@@ -31,7 +31,7 @@
             wdoc.write(content);
             wdoc.close();
             var printed = false;
-            function callPrint() {
+            var callPrint = function () {
                 if(printed) {
                     return;
                 }
