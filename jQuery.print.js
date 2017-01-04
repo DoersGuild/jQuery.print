@@ -83,6 +83,9 @@
                         // Destroy the iframe if created here
                         $iframe.remove();
                     }
+                    if(options.callback != null)
+                    options.callback();
+
                 }, 100);
             })
             .fail(function (err) {
@@ -162,7 +165,8 @@
             deferred: $.Deferred(),
             timeout: 750,
             title: null,
-            doctype: '<!doctype html>'
+            doctype: '<!doctype html>',
+            callback: null
         };
         // Merge with user-options
         options = $.extend({}, defaults, (options || {}));
