@@ -115,9 +115,10 @@ Currently this plugin supports the following options:
 * [jQuery](http://jquery.com/) v. 1.7.2
 * [jQuery](http://jquery.com/) v. 1.9.1
 * [jQuery](http://jquery.com/) v. 2.2.0
+* [jQuery](http://jquery.com/) v. 3.1.1
 
 ### Browsers
-* Google Chrome - v 20, 26, 48
+* Google Chrome - v 20, 26, 48, 55
 * Internet Explorer - v 10, 11
 * Firefox - v 35
 
