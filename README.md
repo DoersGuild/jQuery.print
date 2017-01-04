@@ -89,7 +89,7 @@ Currently this plugin supports the following options:
 
  - Default: `$.Deferred()`
  - Acceptable-Values: Any valid `jQuery.Deferred` object
- - Function: A jQuery.Deferred object that is resolved once the print function is called
+ - Function: A jQuery.Deferred object that is resolved once the print function is called. Can be used [to setup callbacks - see wiki](https://github.com/DoersGuild/jQuery.print/wiki/Using-the-deferred-option-to-set-up-a-callback-after-printing)
 
 ####timeout
 

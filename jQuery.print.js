@@ -1,5 +1,5 @@
 /* @license 
- * jQuery.print, version 1.5.0
+ * jQuery.print, version 1.5.1
  *  (c) Sathvik Ponangi, Doers' Guild
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
@@ -42,10 +42,9 @@
                     if (!frameWindow.document.execCommand('print', false, null)) {
                         // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
                         frameWindow.print();
-                    }else{
-                        // focus body as it is losing focus in iPad and content not getting printed
-                        $('body').focus();
                     }
+                    // focus body as it is losing focus in iPad and content not getting printed
+                    $('body').focus();
                 } catch (e) {
                     frameWindow.print();
                 }
