@@ -32,61 +32,62 @@
         <!--[if lt IE 9]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        <div id="container"><div class="inner">
-            <h3><a href="https://github.com/DoersGuild/jQuery.print" id="view-on-github" class="btn"><img src="../images/octocat-icon.png" style="float:left;" /><span>View jQuery.print on GitHub</span></a></h3>
-            <div id="content_holder">
-                <div id="ele1" class="a">
-                    <h3>Element 1</h3>
-                    <p>
-                    Some random text.
-                    <input type="text" value="Dummy input text" />
-                    </p>
-                    <button class="print-link no-print" onclick="jQuery('#ele1').print()">
-                    Print this (jQuery('#ele1').print())
-                    </button>
-                </div>
-                <div id="ele2" class="b">
-                    <h3>Element 2</h3>
-                    <p>
-                    Some other random text.
-                    </p>
-                    <button class="print-link no-print">
-                    Print this ($.print("#ele2")) and skip the button (.no-print)
-                    </button>
-                </div>
-                <div id="ele3" class="a">
-                    <h3>Element 3</h3>
-                    <p class="no-print">
-                    Some more random text that is not to be printed.
-                    </p>
-                    <button class="print-link" onclick="jQuery.print('#ele3')">
-                    Print this (jQuery.print('#ele3'))
-                    </button>
-                </div>
-                <div id="ele4" class="b">
-                    <h3 class='avoid-this'>Element 4</h3>
-                    <p>
-                    Some really random text.
-                    </p>
-                    <pre><code>
-                    $("#ele4").find('button').on('click', function() {
-                        //Print ele4 with custom options
-                        $("#ele4").print({
-                            //Use Global styles
-                            globalStyles : false,
-                            //Add link with attrbute media=print
-                            mediaPrint : false,
-                            //Custom stylesheet
-                            stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
-                            //Print in a hidden iframe
-                            iframe : false,
-                            //Don't print this
-                            noPrintSelector : ".avoid-this",
-                            //Add this at top
-                            prepend : "Hello World!!!<br/>",
-                            //Add this on bottom
-                            append : "<br/>Buh Bye!"
-                        });
+      <div id="container"><div class="inner">
+        <h3><a href="https://github.com/DoersGuild/jQuery.print" id="view-on-github" class="btn"><span>View jQuery.print on GitHub</span></a></h3>
+        <div id="content_holder">
+            <div id="ele1" class="a">
+                <h3>Element 1</h3>
+                <p>
+                Some random text.
+                <input type="text" value="Dummy input text" />
+                </p>
+                <button class="print-link no-print" onclick="jQuery('#ele1').print()">
+                Print this (jQuery('#ele1').print())
+                </button>
+            </div>
+            <div id="ele2" class="b">
+                <h3>Element 2</h3>
+                <p>
+                Some other random text.
+                </p>
+                <button class="print-link no-print">
+                Print this ($.print("#ele2")) and skip the button (.no-print)
+                </button>
+            </div>
+            <div id="ele3" class="a">
+                <h3>Element 3</h3>
+                <p class="no-print">
+                Some more random text that is not to be printed.
+                </p>
+                <button class="print-link" onclick="jQuery.print('#ele3')">
+                Print this (jQuery.print('#ele3'))
+                </button>
+            </div>
+            <div id="ele4" class="b">
+                <h3 class='avoid-this'>Element 4</h3>
+                <p>
+                Some really random text.
+                </p>
+                <pre><code>
+                $("#ele4").find('button').on('click', function() {
+                    //Print ele4 with custom options
+                    $("#ele4").print({
+                        //Use Global styles
+                        globalStyles : false,
+                        //Add link with attrbute media=print
+                        mediaPrint : false,
+                        //Custom stylesheet
+                        stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+                        //Print in a hidden iframe
+                        iframe : false,
+                        //Don't print this
+                        noPrintSelector : ".avoid-this",
+                        //Add this at top
+                        prepend : "Hello World!!!<br/>",
+                        //Add this on bottom
+                        append : "<br/>Buh Bye!",
+                        //Log to console when printing is done via a deffered callback
+                        deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                     });
                     // Fork https://github.com/doersguild/jQuery.print for the full list of options
                     </code></pre>
@@ -100,14 +101,14 @@
                 </button>
             </div>
         </div></div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
         window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')
         </script>
         <script src="../jQuery.print.js"></script>
         <script type='text/javascript'>
         //<![CDATA[
-        $(function() {
+        jQuery(function($) { 'use strict';
             $("#ele2").find('.print-link').on('click', function() {
                 //Print ele2 with default options
                 $.print("#ele2");
@@ -128,7 +129,9 @@
                     //Add this at top
                     prepend : "Hello World!!!<br/>",
                     //Add this on bottom
-                    append : "<br/>Buh Bye!"
+                    append : "<br/>Buh Bye!",
+                    //Log to console when printing is done via a deffered callback
+                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                 });
             });
             // Fork https://github.com/sathvikp/jQuery.print for the full list of options
