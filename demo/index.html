@@ -81,7 +81,9 @@
                         //Add this at top
                         prepend : "Hello World!!!<br/>",
                         //Add this on bottom
-                        append : "<br/>Buh Bye!"
+                        append : "<br/>Buh Bye!",
+                        //Log to console when printing is done via a deffered callback
+                        deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                     });
                 });
                 </code></pre>
@@ -94,14 +96,14 @@
             Print page - jQuery.print()
             </button>
         </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
         window.jQuery || document.write('<script src="../bower_components/jquery/dist/jquery.min.js"><\/script>')
         </script>
         <script src="../jQuery.print.js"></script>
         <script type='text/javascript'>
         //<![CDATA[
-        $(function() {
+        jQuery(function($) { 'use strict';
             $("#ele2").find('.print-link').on('click', function() {
                 //Print ele2 with default options
                 $.print("#ele2");
@@ -122,7 +124,9 @@
                     //Add this at top
                     prepend : "Hello World!!!<br/>",
                     //Add this on bottom
-                    append : "<br/>Buh Bye!"
+                    append : "<br/>Buh Bye!",
+                    //Log to console when printing is done via a deffered callback
+                    deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                 });
             });
             // Fork https://github.com/sathvikp/jQuery.print for the full list of options
