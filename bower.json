@@ -1,6 +1,6 @@
 {
     "name": "jQuery.print",
-    "main": "jQuery.print.js",
+    "main": "dist/jQuery.print.min.js",
     "version": "1.5.1",
     "homepage": "https://doersguild.github.io/jQuery.print/",
     "authors": [
