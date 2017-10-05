@@ -11,7 +11,9 @@
   "keywords": [
     "print",
     "element printing",
-    "jquery print"
+    "jquery",
+    "jQuery.print",
+    "jquery-plugin"
   ],
   "dependencies": {
     "jquery": ">=1.7.2"
