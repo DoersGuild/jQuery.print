@@ -1,17 +1,40 @@
 /* @license 
- * jQuery.print, version 1.5.1
+ * jQuery.print, version 1.6.0
  *  (c) Sathvik Ponangi, Doers' Guild
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
 (function ($) {
     "use strict";
     // A nice closure for our definitions
+
+    function jQueryCloneWithSelectAndTextAreaValues(elmToClone, withDataAndEvents, deepWithDataAndEvents) {
+        // Replacement jQuery clone that also clones the values in selects and textareas as jQuery doesn't for performance reasons - https://stackoverflow.com/questions/742810/clone-isnt-cloning-select-values
+        // Based on https://github.com/spencertipping/jquery.fix.clone
+        var $elmToClone = $(elmToClone),
+            $result           = $elmToClone.clone(withDataAndEvents, deepWithDataAndEvents),
+            $my_textareas     = $elmToClone.find('textarea').add($elmToClone.filter('textarea')),
+            $result_textareas = $result.find('textarea').add($result.filter('textarea')),
+            $my_selects       = $elmToClone.find('select').add($elmToClone.filter('select')),
+            $result_selects   = $result.find('select').add($result.filter('select'));
+
+        for (var i = 0, l = $my_textareas.length; i < l; ++i) {
+            $($result_textareas[i]).val($($my_textareas[i]).val());
+        }
+        for (var i = 0, l = $my_selects.length;   i < l; ++i) {
+            for (var j = 0, m = $my_selects[i].options.length; j < m; ++j) {
+                if ($my_selects[i].options[j].selected === true) {
+                    $result_selects[i].options[j].selected = true;
+                }
+            }
+        }
+        return $result;
+    }
+
     function getjQueryObject(string) {
         // Make string a vaild jQuery thing
         var jqObj = $("");
         try {
-            jqObj = $(string)
-                .clone();
+            jqObj = jQueryCloneWithSelectAndTextAreaValues(string);
         } catch (e) {
             jqObj = $("<span />")
                 .html(string);
@@ -181,7 +204,7 @@
             $styles = $.merge($styles, $('<link rel="stylesheet" href="' + options.stylesheet + '">'));
         }
         // Create a copy of the element to print
-        var copy = $this.clone();
+        var copy = jQueryCloneWithSelectAndTextAreaValues($this);
         // Wrap it in a span to get the HTML markup string
         copy = $("<span/>")
             .append(copy);
@@ -189,7 +212,7 @@
         copy.find(options.noPrintSelector)
             .remove();
         // Add in the styles
-        copy.append($styles.clone());
+        copy.append(jQueryCloneWithSelectAndTextAreaValues($styles));
         // Update title
         if (options.title) {
             var title = $("title", copy);

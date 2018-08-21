@@ -1,7 +1,8 @@
 {
   "name": "jQuery.print",
   "filename": "jQuery.print.min.js",
-  "version": "1.5.1",
+  "main": "jQuery.print.js",
+  "version": "1.6.0",
   "homepage": "https://doersguild.github.io/jQuery.print/",
   "authors": [
     "Sathvik P <sathvik@doersguild.com>"
@@ -10,7 +11,9 @@
   "keywords": [
     "print",
     "element printing",
-    "jquery print"
+    "jquery",
+    "jQuery.print",
+    "jquery-plugin"
   ],
   "dependencies": {
     "jquery": ">=1.7.2"

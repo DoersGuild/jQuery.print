@@ -1,0 +1,3 @@
+- Kindly read through [Readme.md](https://github.com/DoersGuild/jQuery.print/blob/master/README.md) and the [Wiki](https://github.com/DoersGuild/jQuery.print/wiki), and search older [issues](https://github.com/DoersGuild/jQuery.print/issues) before posting
+- Kindly create an online demo with jsfiddle.net or similar replicating your issue
+- When posting a PR kindly follow the original indentation and style (4 spaces)
