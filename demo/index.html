@@ -79,9 +79,9 @@
                         //Don't print this
                         noPrintSelector : ".avoid-this",
                         //Add this at top
-                        prepend : "Hello World!!!<br/>",
+                        prepend : "Hello World!!!&lt;br/&gt;",
                         //Add this on bottom
-                        append : "<br/>Buh Bye!",
+                        append : "&lt;br/&gt;Buh Bye!",
                         //Log to console when printing is done via a deffered callback
                         deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                     });
