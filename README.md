@@ -7,7 +7,7 @@ jQuery.print is a plugin for printing specific parts of a page
 Include it in your HTML after importing jQuery, like:
 
 ```html
-	<script type="text/JavaScript" src="path/to/jquery.print.js" />
+	<script type="text/JavaScript" src="path/to/jquery.print.js"></script>
 ```
 	
 Use it like:
