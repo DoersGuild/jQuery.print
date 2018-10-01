@@ -15,13 +15,14 @@
             $my_textareas     = $elmToClone.find('textarea').add($elmToClone.filter('textarea')),
             $result_textareas = $result.find('textarea').add($result.filter('textarea')),
             $my_selects       = $elmToClone.find('select').add($elmToClone.filter('select')),
-            $result_selects   = $result.find('select').add($result.filter('select'));
+            $result_selects   = $result.find('select').add($result.filter('select')),
+            i, l, j, m;
 
-        for (var i = 0, l = $my_textareas.length; i < l; ++i) {
+        for (i = 0, l = $my_textareas.length; i < l; ++i) {
             $($result_textareas[i]).val($($my_textareas[i]).val());
         }
-        for (var i = 0, l = $my_selects.length;   i < l; ++i) {
-            for (var j = 0, m = $my_selects[i].options.length; j < m; ++j) {
+        for (i = 0, l = $my_selects.length;   i < l; ++i) {
+            for (j = 0, m = $my_selects[i].options.length; j < m; ++j) {
                 if ($my_selects[i].options[j].selected === true) {
                     $result_selects[i].options[j].selected = true;
                 }
@@ -53,28 +54,28 @@
             }
             wdoc.write(content);
             wdoc.close();
-            var printed = false;
-            var callPrint = function () {
-                if(printed) {
-                    return;
-                }
-                // Fix for IE : Allow it to render the iframe
-                frameWindow.focus();
-                try {
-                    // Fix for IE11 - printng the whole page instead of the iframe content
-                    if (!frameWindow.document.execCommand('print', false, null)) {
-                        // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
+            var printed = false,
+                callPrint = function () {
+                    if(printed) {
+                        return;
+                    }
+                    // Fix for IE : Allow it to render the iframe
+                    frameWindow.focus();
+                    try {
+                        // Fix for IE11 - printng the whole page instead of the iframe content
+                        if (!frameWindow.document.execCommand('print', false, null)) {
+                            // document.execCommand returns false if it failed -http://stackoverflow.com/a/21336448/937891
+                            frameWindow.print();
+                        }
+                        // focus body as it is losing focus in iPad and content not getting printed
+                        $('body').focus();
+                    } catch (e) {
                         frameWindow.print();
                     }
-                    // focus body as it is losing focus in iPad and content not getting printed
-                    $('body').focus();
-                } catch (e) {
-                    frameWindow.print();
-                }
-                frameWindow.close();
-                printed = true;
-                def.resolve();
-            }
+                    frameWindow.close();
+                    printed = true;
+                    def.resolve();
+                };
             // Print once the frame window loads - seems to work for the new-window option but unreliable for the iframe
             $(frameWindow).on("load", callPrint);
             // Fallback to printing directly if the frame doesn't fire the load event for whatever reason

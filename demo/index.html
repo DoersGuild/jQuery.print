@@ -81,7 +81,7 @@
                         //Add this at top
                         prepend : "Hello World!!!&lt;br/&gt;",
                         //Add this on bottom
-                        append : "&lt;br/&gt;Buh Bye!",
+                        append : "&lt;span&gt;&lt;br/&gt;Buh Bye!&lt;/span&gt;",
                         //Log to console when printing is done via a deffered callback
                         deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                     });
@@ -124,7 +124,7 @@
                     //Add this at top
                     prepend : "Hello World!!!<br/>",
                     //Add this on bottom
-                    append : "<br/>Buh Bye!",
+                    append : "<span><br/>Buh Bye!</span>",
                     //Log to console when printing is done via a deffered callback
                     deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                 });
