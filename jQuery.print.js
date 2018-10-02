@@ -12,19 +12,19 @@
         // Based on https://github.com/spencertipping/jquery.fix.clone
         var $elmToClone = $(elmToClone),
             $result           = $elmToClone.clone(withDataAndEvents, deepWithDataAndEvents),
-            $my_textareas     = $elmToClone.find('textarea').add($elmToClone.filter('textarea')),
-            $result_textareas = $result.find('textarea').add($result.filter('textarea')),
-            $my_selects       = $elmToClone.find('select').add($elmToClone.filter('select')),
-            $result_selects   = $result.find('select').add($result.filter('select')),
+            $myTextareas     = $elmToClone.find('textarea').add($elmToClone.filter('textarea')),
+            $resultTextareas = $result.find('textarea').add($result.filter('textarea')),
+            $mySelects       = $elmToClone.find('select').add($elmToClone.filter('select')),
+            $resultSelects   = $result.find('select').add($result.filter('select')),
             i, l, j, m;
 
-        for (i = 0, l = $my_textareas.length; i < l; ++i) {
-            $($result_textareas[i]).val($($my_textareas[i]).val());
+        for (i = 0, l = $myTextareas.length; i < l; ++i) {
+            $($resultTextareas[i]).val($($myTextareas[i]).val());
         }
-        for (i = 0, l = $my_selects.length;   i < l; ++i) {
-            for (j = 0, m = $my_selects[i].options.length; j < m; ++j) {
-                if ($my_selects[i].options[j].selected === true) {
-                    $result_selects[i].options[j].selected = true;
+        for (i = 0, l = $mySelects.length;   i < l; ++i) {
+            for (j = 0, m = $mySelects[i].options.length; j < m; ++j) {
+                if ($mySelects[i].options[j].selected === true) {
+                    $resultSelects[i].options[j].selected = true;
                 }
             }
         }
