@@ -10,8 +10,8 @@ interface IPrintConfig {
 	stylesheet?: string;
 	noPrintSelector?: string;
 	iframe?: boolean;
-	append?: string;
-	prepend?: string;
+	append?: string | JQuery<HTMLElement>;
+	prepend?: string | JQuery<HTMLElement>;
 	manuallyCopyFormValues?: boolean;
 	deferred?: JQueryDeferred<any>;
 	timeout?: number;
