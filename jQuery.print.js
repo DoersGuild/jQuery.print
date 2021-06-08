@@ -1,6 +1,5 @@
 /* @license 
- * jQuery.print, version 1.6.0
- *  (c) Sathvik Ponangi, Doers' Guild
+ * jQuery.print, version 1.6.1
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
 (function ($) {
@@ -12,20 +11,30 @@
         // Based on https://github.com/spencertipping/jquery.fix.clone
         var $elmToClone = $(elmToClone),
             $result           = $elmToClone.clone(withDataAndEvents, deepWithDataAndEvents),
-            $my_textareas     = $elmToClone.find('textarea').add($elmToClone.filter('textarea')),
-            $result_textareas = $result.find('textarea').add($result.filter('textarea')),
-            $my_selects       = $elmToClone.find('select').add($elmToClone.filter('select')),
-            $result_selects   = $result.find('select').add($result.filter('select')),
-            i, l, j, m;
+            $myTextareas     = $elmToClone.find('textarea').add($elmToClone.filter('textarea')),
+            $resultTextareas = $result.find('textarea').add($result.filter('textarea')),
+            $mySelects       = $elmToClone.find('select').add($elmToClone.filter('select')),
+            $resultSelects   = $result.find('select').add($result.filter('select')),
+            $myCanvas       = $elmToClone.find('canvas').add($elmToClone.filter('canvas')),
+            $resultCanvas   = $result.find('canvas').add($result.filter('canvas')),
+            i, l, j, m, myCanvasContext;
 
-        for (i = 0, l = $my_textareas.length; i < l; ++i) {
-            $($result_textareas[i]).val($($my_textareas[i]).val());
+        for (i = 0, l = $myTextareas.length; i < l; ++i) {
+            $($resultTextareas[i]).val($($myTextareas[i]).val());
         }
-        for (i = 0, l = $my_selects.length;   i < l; ++i) {
-            for (j = 0, m = $my_selects[i].options.length; j < m; ++j) {
-                if ($my_selects[i].options[j].selected === true) {
-                    $result_selects[i].options[j].selected = true;
+        for (i = 0, l = $mySelects.length;   i < l; ++i) {
+            for (j = 0, m = $mySelects[i].options.length; j < m; ++j) {
+                if ($mySelects[i].options[j].selected === true) {
+                    $resultSelects[i].options[j].selected = true;
                 }
+            }
+        }
+        for (i = 0, l = $myCanvas.length; i < l; ++i) {
+            // https://stackoverflow.com/a/41242597
+            myCanvasContext = $myCanvas[i].getContext('2d');
+            if(myCanvasContext) {
+                $resultCanvas[i].getContext('2d').drawImage($myCanvas[i], 0,0);
+                $($resultCanvas[i]).attr("data-jquery-print", myCanvasContext.canvas.toDataURL());
             }
         }
         return $result;
@@ -53,6 +62,19 @@
                 wdoc.write(options.doctype);
             }
             wdoc.write(content);
+            try {
+                var canvas = wdoc.querySelectorAll('canvas');
+                for(var i = 0; i < canvas.length; i++) {
+                    var ctx = canvas[i].getContext("2d");
+                    var image = new Image();
+                    image.onload = function() {
+                        ctx.drawImage(image, 0, 0);
+                    };
+                    image.src = canvas[i].getAttribute("data-jquery-print");
+                }
+            } catch (err) {
+                console.warn(err);
+            }
             wdoc.close();
             var printed = false,
                 callPrint = function () {
@@ -205,7 +227,7 @@
             $styles = $.merge($styles, $('<link rel="stylesheet" href="' + options.stylesheet + '">'));
         }
         // Create a copy of the element to print
-        var copy = jQueryCloneWithSelectAndTextAreaValues($this);
+        var copy = jQueryCloneWithSelectAndTextAreaValues($this, true, true);
         // Wrap it in a span to get the HTML markup string
         copy = $("<span/>")
             .append(copy);
