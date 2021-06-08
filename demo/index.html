@@ -20,6 +20,13 @@
         .b {
             color: #aaa;
         }
+        #canvasExample {
+            height: 5em;
+            max-width:  100%;
+            border: 0.2em solid #777;
+            display: block;
+            margin-bottom: 1em;
+        }
         </style>
         <!--[if lt IE 9]>
         <script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
@@ -46,6 +53,8 @@
                 <p>
                 Some other random text.
                 </p>
+                Canvas:
+                <canvas id="canvasExample"></canvas>
                 <button class="print-link no-print">
                 Print this ($.print("#ele2")) and skip the button (.no-print)
                 </button>
@@ -104,6 +113,12 @@
         <script type='text/javascript'>
         //<![CDATA[
         jQuery(function($) { 'use strict';
+            try {
+                var original = document.getElementById('canvasExample');
+                original.getContext('2d').fillRect(20, 20, 120, 120);
+            } catch (err) {
+                console.warn(err)
+            }
             $("#ele2").find('.print-link').on('click', function() {
                 //Print ele2 with default options
                 $.print("#ele2");
@@ -129,7 +144,6 @@
                     deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
                 });
             });
-            // Fork https://github.com/sathvikp/jQuery.print for the full list of options
         });
         //]]>
         </script>

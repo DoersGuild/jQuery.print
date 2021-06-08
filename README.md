@@ -127,6 +127,3 @@ Currently this plugin supports the following options:
 
 ## Demo
 [jQuery.print/demo](http://doersguild.github.io/jQuery.print/demo/)
-
----------------------------------------
-Like our [work](http://doersguild.com)? [Get in touch!](mailto:mail@doersguild.com)
