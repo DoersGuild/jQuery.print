@@ -2,7 +2,7 @@
   "name": "jQuery.print",
   "filename": "jQuery.print.min.js",
   "main": "jQuery.print.js",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "homepage": "https://doersguild.github.io/jQuery.print/",
   "description": "Easy to use, Element Printing Plugin for jQuery, for printing specific parts of a page",
   "keywords": [

@@ -7,7 +7,7 @@ interface JQuery {
 interface IPrintConfig {
 	globalStyles?: boolean;
 	mediaPrint?: boolean;
-	stylesheet?: string;
+	stylesheet?: string | Array;
 	noPrintSelector?: string;
 	iframe?: boolean;
 	append?: string | JQuery<HTMLElement>;

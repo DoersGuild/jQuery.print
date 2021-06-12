@@ -1,5 +1,5 @@
 /* @license 
- * jQuery.print, version 1.6.1
+ * jQuery.print, version 1.6.2
  * Licence: CC-By (http://creativecommons.org/licenses/by/3.0/)
  *--------------------------------------------------------------------------*/
 (function ($) {
@@ -223,8 +223,13 @@
             $styles = $("link[media=print]");
         }
         if (options.stylesheet) {
-            // Add a custom stylesheet if given
-            $styles = $.merge($styles, $('<link rel="stylesheet" href="' + options.stylesheet + '">'));
+            // Add a custom stylesheet(s) if given
+            if (!(($.isArray ? $.isArray : Array.isArray)(options.stylesheet))) {
+                options.stylesheet = [options.stylesheet]
+            }
+            for(var i = 0; i < options.stylesheet.length; i++) {
+                $styles = $.merge($styles, $('<link rel="stylesheet" href="' + options.stylesheet[i] + '">'));
+            }
         }
         // Create a copy of the element to print
         var copy = jQueryCloneWithSelectAndTextAreaValues($this, true, true);
