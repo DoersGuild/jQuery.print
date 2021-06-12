@@ -58,7 +58,7 @@ Currently this plugin supports the following options:
 #### stylesheet
 
  - Default: `null`
- - Acceptable-Values: URL-string
+ - Acceptable-Values: URL-string or Array of URL-strings
  - Function: URL of an external stylesheet to be included
 
 #### noPrintSelector
