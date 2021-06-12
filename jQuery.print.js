@@ -57,6 +57,11 @@
         var def = $.Deferred();
         try {
             frameWindow = frameWindow.contentWindow || frameWindow.contentDocument || frameWindow;
+            try {
+                frameWindow.resizeTo(window.innerWidth, window.innerHeight);
+            } catch (err) {
+                console.warn(err);
+            }
             var wdoc = frameWindow.document || frameWindow.contentDocument || frameWindow;
             if(options.doctype) {
                 wdoc.write(options.doctype);

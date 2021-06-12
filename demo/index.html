@@ -19,9 +19,11 @@
         .a {
             background: black;
             color: white;
+            padding: 0.5em 0.1em;
         }
         .b {
             color: #aaa;
+            padding: 0.5em 0.1em;
         }
         #canvasExample {
             height: 5em;
@@ -29,6 +31,33 @@
             border: 0.2em solid #777;
             display: block;
             margin-bottom: 1em;
+        }
+        .grid-wrapper {
+            display: grid;
+            grid-gap: 0.125em;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) ) ;
+            background-color: #fff;
+            color: #444;
+            margin-bottom: 1em;
+            page-break-inside: avoid;
+        }
+        .grid-wrapper .box {
+            background-color: #444;
+            color: #fff;
+            border: 0.1em solid #444;
+            border-radius: 5px;
+            padding: 0.25em;
+            font-size: 150%;
+        }
+        .grid-wrapper .a {
+            grid-column: auto / span 2;
+        }
+        .grid-wrapper .k {
+            grid-column: auto / span 3;
+        }
+        .grid-wrapper .g {
+            grid-column: auto / span 2;
+            grid-row: auto / span 2;
         }
         </style>
         <!--[if lt IE 9]>
@@ -59,6 +88,22 @@
                 </p>
                 Canvas:
                 <canvas id="canvasExample"></canvas>
+                Grid:
+                <div class="grid-wrapper">
+                  <div class="box a">A</div>
+                  <div class="box b">B</div>
+                  <div class="box c">C</div>
+                  <div class="box d">D</div>
+                  <div class="box e">E</div>
+                  <div class="box f">F</div>
+                  <div class="box g">G</div>
+                  <div class="box h">H</div>
+                  <div class="box i">I</div>
+                  <div class="box j">J</div>
+                  <div class="box k">K</div>
+                  <div class="box l">L</div>
+                  <div class="box m">M</div>
+                </div>
                 <button class="print-link no-print">
                 Print this ($.print("#ele2")) and skip the button (.no-print)
                 </button>
